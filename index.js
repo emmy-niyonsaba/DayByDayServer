@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 const port = process.env.PORT;
 
-import userRoutes from "./routers/userRouter.js";
+import userRoutes from "./src/routers/userRouter.js";
 
 app.use("/users", userRoutes);
 
