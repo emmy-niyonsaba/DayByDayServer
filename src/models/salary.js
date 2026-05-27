@@ -1,11 +1,11 @@
 // models/Salary.js
 
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
-import User from './user.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../Config/db.js";
+import User from "./user.js";
 
 const Salary = sequelize.define(
-  'Salary',
+  "Salary",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -18,12 +18,12 @@ const Salary = sequelize.define(
       allowNull: false,
 
       references: {
-        model: 'users',
-        key: 'id',
+        model: "users",
+        key: "id",
       },
 
-      onUpdate: 'CASCADE',
-      onDelete: 'RESTRICT',
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
     },
 
     month: {
@@ -52,19 +52,19 @@ const Salary = sequelize.define(
     },
   },
   {
-    tableName: 'salaries',
-    createdAt: 'created_at',
+    tableName: "salaries",
+    createdAt: "created_at",
     updatedAt: false,
-  }
+  },
 );
 
 // Relationships
 Salary.belongsTo(User, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 User.hasMany(Salary, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 export default Salary;

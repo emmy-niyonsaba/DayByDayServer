@@ -1,11 +1,11 @@
 // models/Discipline.js
 
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
-import User from './user.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../Config/db.js";
+import User from "./user.js";
 
 const Discipline = sequelize.define(
-  'Discipline',
+  "Discipline",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -32,27 +32,27 @@ const Discipline = sequelize.define(
       allowNull: false,
 
       references: {
-        model: 'users',
-        key: 'id',
+        model: "users",
+        key: "id",
       },
 
-      onUpdate: 'CASCADE',
-      onDelete: 'RESTRICT',
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
     },
   },
   {
-    tableName: 'discipline',
+    tableName: "discipline",
     timestamps: false,
-  }
+  },
 );
 
 // Relationships
 Discipline.belongsTo(User, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 User.hasMany(Discipline, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 export default Discipline;

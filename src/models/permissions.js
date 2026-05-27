@@ -1,11 +1,11 @@
 // models/Permission.js
 
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
-import User from './user.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../Config/db.js";
+import User from "./user.js";
 
 const Permission = sequelize.define(
-  'Permission',
+  "Permission",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -29,12 +29,8 @@ const Permission = sequelize.define(
     },
 
     status: {
-      type: DataTypes.ENUM(
-        'pending',
-        'approved',
-        'rejected'
-      ),
-      defaultValue: 'pending',
+      type: DataTypes.ENUM("pending", "approved", "rejected"),
+      defaultValue: "pending",
     },
 
     description: {
@@ -47,27 +43,27 @@ const Permission = sequelize.define(
       allowNull: false,
 
       references: {
-        model: 'users',
-        key: 'id',
+        model: "users",
+        key: "id",
       },
 
-      onUpdate: 'CASCADE',
-      onDelete: 'RESTRICT',
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
     },
   },
   {
-    tableName: 'permission',
+    tableName: "permission",
     timestamps: false,
-  }
+  },
 );
 
 // Relationships
 Permission.belongsTo(User, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 User.hasMany(Permission, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 export default Permission;

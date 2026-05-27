@@ -8,7 +8,9 @@
     "sequelize": "^6.37.8"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "dev": "nodemon index.js",
+    "seed": "node src/seed/seed.js"
   },
   "type": "module"
 }

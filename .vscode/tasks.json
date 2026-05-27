@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "seed-database",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"src/seed/seed.js"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "none"
+		}
+	]
+}

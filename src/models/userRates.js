@@ -1,11 +1,11 @@
 // models/UserRate.js
 
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
-import User from './user.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../Config/db.js";
+import User from "./user.js";
 
 const UserRate = sequelize.define(
-  'UserRate',
+  "UserRate",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -18,12 +18,12 @@ const UserRate = sequelize.define(
       allowNull: false,
 
       references: {
-        model: 'users',
-        key: 'id',
+        model: "users",
+        key: "id",
       },
 
-      onUpdate: 'CASCADE',
-      onDelete: 'RESTRICT',
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
     },
 
     rate: {
@@ -32,24 +32,24 @@ const UserRate = sequelize.define(
     },
 
     payment_type: {
-      type: DataTypes.ENUM('daily', 'monthly'),
+      type: DataTypes.ENUM("daily", "monthly"),
       allowNull: false,
     },
   },
   {
-    tableName: 'user_rates',
+    tableName: "user_rates",
     underscored: true,
     timestamps: true,
-  }
+  },
 );
 
 // Relationships
 UserRate.belongsTo(User, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 User.hasMany(UserRate, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 export default UserRate;

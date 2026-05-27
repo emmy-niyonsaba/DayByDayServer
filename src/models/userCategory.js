@@ -1,8 +1,8 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../Config/db.js";
 
 const UserCategory = sequelize.define(
-  'UserCategory',
+  "UserCategory",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,19 +11,14 @@ const UserCategory = sequelize.define(
     },
 
     category_name: {
-      type: DataTypes.ENUM(
-        'admin',
-        'supervisor',
-        'manpower',
-        'contractor'
-      ),
+      type: DataTypes.ENUM("admin", "supervisor", "manpower", "contractor"),
       allowNull: false,
     },
   },
   {
-    tableName: 'user_category',
+    tableName: "user_category",
     timestamps: false,
-  }
+  },
 );
 
 export default UserCategory;

@@ -1,11 +1,11 @@
 // models/Attendance.js
 
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
-import User from './user.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../Config/db.js";
+import User from "./user.js";
 
 const Attendance = sequelize.define(
-  'Attendance',
+  "Attendance",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -18,32 +18,32 @@ const Attendance = sequelize.define(
       allowNull: false,
 
       references: {
-        model: 'users',
-        key: 'id',
+        model: "users",
+        key: "id",
       },
 
-      onUpdate: 'CASCADE',
-      onDelete: 'RESTRICT',
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
     },
 
     attendance: {
-      type: DataTypes.ENUM('full_day', 'partial'),
+      type: DataTypes.ENUM("full_day", "partial"),
       allowNull: false,
     },
   },
   {
-    tableName: 'attendance',
+    tableName: "attendance",
     timestamps: false,
-  }
+  },
 );
 
 // Relationships
 Attendance.belongsTo(User, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 User.hasMany(Attendance, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 export default Attendance;

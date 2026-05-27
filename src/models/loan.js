@@ -1,11 +1,11 @@
 // models/Loan.js
 
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
-import User from './user.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../Config/db.js";
+import User from "./user.js";
 
 const Loan = sequelize.define(
-  'Loan',
+  "Loan",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -18,12 +18,12 @@ const Loan = sequelize.define(
       allowNull: false,
 
       references: {
-        model: 'users',
-        key: 'id',
+        model: "users",
+        key: "id",
       },
 
-      onUpdate: 'CASCADE',
-      onDelete: 'RESTRICT',
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
     },
 
     amount: {
@@ -42,19 +42,19 @@ const Loan = sequelize.define(
     },
   },
   {
-    tableName: 'loan',
-    createdAt: 'created_at',
+    tableName: "loan",
+    createdAt: "created_at",
     updatedAt: false,
-  }
+  },
 );
 
 // Relationships
 Loan.belongsTo(User, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 User.hasMany(Loan, {
-  foreignKey: 'user_id',
+  foreignKey: "user_id",
 });
 
 export default Loan;

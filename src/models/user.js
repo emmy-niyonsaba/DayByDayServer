@@ -1,11 +1,11 @@
 // models/User.js
 
-import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
-import UserCategory from './userCategory.js';
+import { DataTypes } from "sequelize";
+import sequelize from "../Config/db.js";
+import UserCategory from "./userCategory.js";
 
 const User = sequelize.define(
-  'User',
+  "User",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -53,28 +53,28 @@ const User = sequelize.define(
       allowNull: false,
 
       references: {
-        model: 'user_category',
-        key: 'id',
+        model: "user_category",
+        key: "id",
       },
 
-      onUpdate: 'CASCADE',
-      onDelete: 'RESTRICT',
+      onUpdate: "CASCADE",
+      onDelete: "RESTRICT",
     },
   },
   {
-    tableName: 'users',
+    tableName: "users",
     underscored: true,
     timestamps: true,
-  }
+  },
 );
 
 // Relationships
 User.belongsTo(UserCategory, {
-  foreignKey: 'category_id',
+  foreignKey: "category_id",
 });
 
 UserCategory.hasMany(User, {
-  foreignKey: 'category_id',
+  foreignKey: "category_id",
 });
 
 export default User;
