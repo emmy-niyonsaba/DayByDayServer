@@ -6,9 +6,9 @@ app.use(cors());
 dotenv.config();
 app.use(cors());
 app.use(express.json());
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
-import userRoutes from "./routers/userRoutes.js";
+import userRoutes from "./routers/userRouter.js";
 
 app.use("/users", userRoutes);
 
