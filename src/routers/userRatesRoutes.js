@@ -1,7 +1,6 @@
 import express from "express";
 import {
   createUserRate,
-  deleteUserRate,
   getAllUserRates,
   getUserRateById,
   updateUserRate,
@@ -13,6 +12,5 @@ router.get("/", getAllUserRates);
 router.post("/", createUserRate);
 router.get("/:id", getUserRateById);
 router.put("/:id", updateUserRate);
-router.delete("/:id", deleteUserRate);
 
 export default router;
