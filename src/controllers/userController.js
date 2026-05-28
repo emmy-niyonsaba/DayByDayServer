@@ -87,11 +87,7 @@ export const createUser = async (req, res) => {
       is_active: req.body.is_active ?? true,
     });
 
-    const createdUser = await User.findByPk(user.id, {
-      include: userInclude,
-    });
-
-    res.status(201).json(createdUser);
+    res.status(201).json("user created successfully");
   } catch (error) {
     res
       .status(500)
@@ -124,15 +120,26 @@ export const updateUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     const user = await User.findByPk(req.params.id);
+
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({
+        message: "User not found",
+      });
     }
 
-    await user.destroy();
-    res.status(200).json({ message: "User deleted successfully" });
+    await user.update({
+      is_active: false,
+    });
+
+    const updatedUser = await User.findByPk(user.id, {
+      include: userInclude,
+    });
+
+    res.status(200).json("User deactivated successfully");
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to delete user", error: error.message });
+    res.status(500).json({
+      message: "Failed to deactivate user",
+      error: error.message,
+    });
   }
 };
