@@ -61,13 +61,16 @@ export const createUserCategory = async (req, res) => {
 };
 
 export const updateUserCategory = async (req, res) => {
+  console.log("running update user-category")
   try {
     const userCategory = await UserCategory.findByPk(req.params.id);
     if (!userCategory) {
       return res.status(404).json({ message: "User category not found" });
     }
-
+    console.log("finish fetching user")
+    console.log(req.body)
     const payload = pickFields(req.body);
+    console.log(payload)
     if (Object.keys(payload).length === 0) {
       return res.status(400).json({
         message: "No valid fields provided to update user category",
@@ -81,23 +84,6 @@ export const updateUserCategory = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Failed to update user category",
-      error: error.message,
-    });
-  }
-};
-
-export const deleteUserCategory = async (req, res) => {
-  try {
-    const userCategory = await UserCategory.findByPk(req.params.id);
-    if (!userCategory) {
-      return res.status(404).json({ message: "User category not found" });
-    }
-
-    await userCategory.destroy();
-    res.status(200).json({ message: "User category deleted successfully" });
-  } catch (error) {
-    res.status(500).json({
-      message: "Failed to delete user category",
       error: error.message,
     });
   }

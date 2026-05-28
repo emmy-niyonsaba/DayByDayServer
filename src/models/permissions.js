@@ -29,7 +29,7 @@ const Permission = sequelize.define(
     },
 
     status: {
-      type: DataTypes.ENUM("pending", "approved", "rejected"),
+      type: DataTypes.ENUM("pending", "approved", "rejected","canceled"),
       defaultValue: "pending",
     },
 

@@ -115,12 +115,23 @@ export const updatePermission = async (req, res) => {
 export const deletePermission = async (req, res) => {
   try {
     const permission = await Permission.findByPk(req.params.id);
+
     if (!permission) {
-      return res.status(404).json({ message: "Permission not found" });
+      return res.status(404).json({
+        message: "Permission not found",
+      });
     }
 
-    await permission.destroy();
-    res.status(200).json({ message: "Permission deleted successfully" });
+    await permission.update({
+      status: "canceled",
+    });
+
+    const updatedPermission = await Permission.findByPk(permission.id, {
+      include: includeUser,
+    });
+
+    res.status(200).json(updatedPermission);
+
   } catch (error) {
     res.status(500).json({
       message: "Failed to delete permission",
