@@ -82,14 +82,12 @@ export const updateUserRate = async (req, res) => {
     if (!userRate) {
       return res.status(404).json({ message: "User rate not found" });
     }
-
     const payload = pickFields(req.body);
     if (Object.keys(payload).length === 0) {
       return res.status(400).json({
         message: "No valid fields provided to update user rate",
       });
     }
-
     await userRate.update(payload);
     const updatedUserRate = await UserRate.findByPk(userRate.id, {
       include: includeUser,
@@ -99,23 +97,6 @@ export const updateUserRate = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Failed to update user rate",
-      error: error.message,
-    });
-  }
-};
-
-export const deleteUserRate = async (req, res) => {
-  try {
-    const userRate = await UserRate.findByPk(req.params.id);
-    if (!userRate) {
-      return res.status(404).json({ message: "User rate not found" });
-    }
-
-    await userRate.destroy();
-    res.status(200).json({ message: "User rate deleted successfully" });
-  } catch (error) {
-    res.status(500).json({
-      message: "Failed to delete user rate",
       error: error.message,
     });
   }

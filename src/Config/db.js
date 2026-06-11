@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 // Create a new Sequelize instance with SSL configuration
-const sequelize = new Sequelize(
+const sequelize = new Seqlize(
   process.env.PGDATABASE,
   process.env.PGUSER,
   process.env.PGPASSWORD,
